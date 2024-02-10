@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  menu_api:
+    build:
+      context: './backend/menu_api'
+    image: menu_api
+    container_name: api_nest
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./backend/menu_api:/usr/src/app
+    networks:
+      - menu_network
+    command: ['yarn', 'start:dev']
+
+  db_postgre:
+    image: postgres
+    container_name: db_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: menu_api
+    volumes:
+      - ./backend/db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - menu_network
+  
+networks:
+  menu_network:
+    driver: bridge
