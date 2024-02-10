@@ -5,8 +5,9 @@ RUN npm install -g @nestjs/cli
 WORKDIR /usr/src/app
 
 COPY package.json ./
+COPY yarn.lock ./
 
-RUN npm install
+RUN yarn install
 
 COPY . .
 
