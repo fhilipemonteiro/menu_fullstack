@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
 import 'dotenv/config';
 
 @Module({
@@ -14,6 +15,7 @@ import 'dotenv/config';
       entities: [],
       synchronize: true,
     }),
+    UsersModule,
   ],
   controllers: [],
   providers: [],
