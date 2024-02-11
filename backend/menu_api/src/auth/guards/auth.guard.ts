@@ -6,9 +6,9 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { JwtAuthService } from '../services/jwt.service';
-import 'dotenv/config';
 import { Reflector } from '@nestjs/core';
 import { IS_PUBLIC_KEY } from '../decorators/auth.decorator';
+import 'dotenv/config';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -31,8 +31,6 @@ export class AuthGuard implements CanActivate {
     const token = this.extractTokenFromHeader(request);
 
     if (!token) {
-      console.log(token);
-
       throw new UnauthorizedException();
     }
 
