@@ -4,6 +4,7 @@ import { UserService } from 'src/users/services/user.service';
 import { LoginDTO } from '../dto/login.dto';
 import { JwtAuthService } from './jwt.service';
 import { PayloadDTO } from '../dto/payload.dto';
+import 'dotenv/config';
 
 @Injectable()
 export class AuthService {
@@ -27,6 +28,10 @@ export class AuthService {
     };
 
     const token = await this.jwtAuthService.generateToken(payload);
+
+    const pay = await this.jwtAuthService.verifyToken(token);
+
+    console.log(pay);
 
     return res.status(200).json({
       access_token: token,

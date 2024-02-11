@@ -11,11 +11,12 @@ import 'dotenv/config';
     JwtModule.register({
       global: true,
       secret: process.env.SECRET_JWT,
-      signOptions: { expiresIn: process.env.EXPIRE_JWT },
+      signOptions: { expiresIn: '2h' },
     }),
     UsersModule,
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtAuthService],
+  exports: [JwtAuthService],
 })
 export class AuthModule {}
