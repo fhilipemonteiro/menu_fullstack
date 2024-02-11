@@ -4,6 +4,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { CategoriesModule } from './categories/categories.module';
 import 'dotenv/config';
 
 @Module({
@@ -15,11 +16,12 @@ import 'dotenv/config';
       username: process.env.USERNAME_DB,
       password: process.env.PASSWORD_DB,
       database: process.env.DATABASE_DB,
-      entities: [],
+      entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true,
     }),
     UsersModule,
     AuthModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [
