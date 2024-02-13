@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PayloadDTO } from '../dto/payload.dto';
+import { PayloadDTO } from '../dto';
 import 'dotenv/config';
 
 @Injectable()
