@@ -21,13 +21,13 @@ export class ProductsController {
   }
 
   @Get()
-  async getAllProducts() {
-    return await this.productService.findAllProducts();
+  async getAllProducts(@Res() res: Response) {
+    return await this.productService.findAllProducts(res);
   }
 
   @Get(':id')
   @UseInterceptors(idIsValid)
-  async getProductById(@Param('id') id: string) {
-    return await this.productService.findProductById(id);
+  async getProductById(@Param('id') id: string, @Res() res: Response) {
+    return await this.productService.findProductById(id, res);
   }
 }

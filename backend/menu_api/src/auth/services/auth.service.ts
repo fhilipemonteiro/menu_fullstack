@@ -14,23 +14,29 @@ export class AuthService {
   ) {}
 
   async login(login: LoginDTO, @Res() res: Response) {
-    const user = await this.userService.getUserByEmail(login.email);
+    try {
+      const user = await this.userService.getUserByEmail(login.email);
 
-    if (!user || login.password !== user.password) {
-      return res.status(404).json({
-        message: 'Email or password incorrect.',
+      if (!user || login.password !== user.password) {
+        res.status(404).json({
+          message: 'Email or password incorrect.',
+        });
+      }
+
+      const payload: PayloadDTO = {
+        sub: user.id,
+        email: user.email,
+      };
+
+      const token = await this.jwtAuthService.generateToken(payload);
+
+      res.status(200).json({
+        access_token: token,
+      });
+    } catch {
+      res.status(500).send({
+        message: 'Internal Server Error.',
       });
     }
-
-    const payload: PayloadDTO = {
-      sub: user.id,
-      email: user.email,
-    };
-
-    const token = await this.jwtAuthService.generateToken(payload);
-
-    return res.status(200).json({
-      access_token: token,
-    });
   }
 }
