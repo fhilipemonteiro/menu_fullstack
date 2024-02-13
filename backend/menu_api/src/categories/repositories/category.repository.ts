@@ -1,6 +1,6 @@
 import { InjectRepository } from '@nestjs/typeorm';
 import { CategoryEntity } from '../entities/category.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 export class CategoryRepository {
   constructor(
@@ -22,5 +22,12 @@ export class CategoryRepository {
       .createQueryBuilder('category')
       .where('category.parent = :parentId', { parentId }) // Filter the  subcategories with the corresponding parent_id
       .getMany();
+  }
+
+  async findCategories(categoriesID: string[]): Promise<CategoryEntity[]> {
+    const categories = await this.categoryRepository.find({
+      where: { id: In(categoriesID) },
+    });
+    return categories;
   }
 }
