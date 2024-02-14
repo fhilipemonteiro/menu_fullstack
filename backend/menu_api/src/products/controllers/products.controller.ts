@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Res,
   UseInterceptors,
@@ -12,6 +13,7 @@ import { ProductsService } from '../services/products.service';
 import { Response } from 'express';
 import { CreateProductDTO } from '../dto';
 import { idIsValid } from 'src/helpers/interceptors';
+import { UpdateProductDTO } from '../dto/update-product.dto';
 
 @Controller('products')
 export class ProductsController {
@@ -30,6 +32,16 @@ export class ProductsController {
   @UseInterceptors(idIsValid)
   async getProductById(@Param('id') id: string, @Res() res: Response) {
     return await this.productService.findProductById(id, res);
+  }
+
+  @Patch(':id')
+  @UseInterceptors(idIsValid)
+  async updateProduct(
+    @Param('id') id: string,
+    @Body() product: UpdateProductDTO,
+    @Res() res: Response,
+  ) {
+    return await this.productService.updateProduct(id, product, res);
   }
 
   @Delete(':id')

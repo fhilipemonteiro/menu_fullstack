@@ -45,6 +45,10 @@ export class ProductsRepository {
     });
   }
 
+  async updateProductSave(product: CreateProductDTO): Promise<ProductsEntity> {
+    return this.productEntity.save(product);
+  }
+
   async deleteById(id: string) {
     const product = await this.productEntity.delete(id);
     return product;

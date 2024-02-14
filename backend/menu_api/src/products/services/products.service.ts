@@ -4,6 +4,7 @@ import { CreateProductDTO } from '../dto/create-product.dto';
 import { Response } from 'express';
 import { ProductsEntity } from '../entities/products.entity';
 import { CategoryWithParent } from '../interfaces/category-with-parent.interface';
+import { UpdateProductDTO } from '../dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -57,11 +58,61 @@ export class ProductsService {
     }
   }
 
-  async deleteProduct(id: string, @Res() res: Response) {
+  async updateProduct(
+    id: string,
+    update: UpdateProductDTO,
+    @Res() res: Response,
+  ) {
     try {
       const product = await this.productsRepository.findByProductId(id);
 
-      console.log(product);
+      if (update.id) {
+        res.status(400).send({
+          message: 'Not possible alter ID after created.',
+        });
+      }
+
+      const validationParameters = () => {
+        const keysParametersUpdate = Object.keys(update);
+        const keysAllowed = Object.keys(product);
+        const keysNotAllowed = [];
+        keysParametersUpdate.forEach((key) => {
+          if (!keysAllowed.includes(key)) {
+            keysNotAllowed.push(key);
+          }
+        });
+        return keysNotAllowed;
+      };
+
+      const invalidParams = validationParameters();
+
+      if (invalidParams.length > 0) {
+        return res.status(422).send({
+          message: 'Invalid parameters.',
+        });
+      }
+
+      if (!product) {
+        return res.status(404).send({
+          message: 'Product not found.',
+        });
+      }
+
+      const updatedProduct = { ...product, ...update };
+
+      await this.productsRepository.updateProductSave(updatedProduct);
+
+      res.status(200).send(updatedProduct);
+    } catch {
+      res.status(500).send({
+        message: 'Internal Server Error.',
+      });
+    }
+  }
+
+  async deleteProduct(id: string, @Res() res: Response) {
+    try {
+      const product = await this.productsRepository.findByProductId(id);
 
       if (!product) {
         return res.status(404).send({
