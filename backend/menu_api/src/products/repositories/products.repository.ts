@@ -44,4 +44,9 @@ export class ProductsRepository {
       where: { id },
     });
   }
+
+  async deleteById(id: string) {
+    const product = await this.productEntity.delete(id);
+    return product;
+  }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -29,5 +30,11 @@ export class ProductsController {
   @UseInterceptors(idIsValid)
   async getProductById(@Param('id') id: string, @Res() res: Response) {
     return await this.productService.findProductById(id, res);
+  }
+
+  @Delete(':id')
+  @UseInterceptors(idIsValid)
+  async deleteProduct(@Param('id') id: string, @Res() res: Response) {
+    return await this.productService.deleteProduct(id, res);
   }
 }

@@ -57,6 +57,28 @@ export class ProductsService {
     }
   }
 
+  async deleteProduct(id: string, @Res() res: Response) {
+    try {
+      const product = await this.productsRepository.findByProductId(id);
+
+      console.log(product);
+
+      if (!product) {
+        return res.status(404).send({
+          message: 'Product not found.',
+        });
+      }
+
+      await this.productsRepository.deleteById(id);
+
+      res.status(204).send();
+    } catch {
+      res.status(500).send({
+        message: 'Internal Server Error.',
+      });
+    }
+  }
+
   private organizationProductsWithCategories(
     product: ProductsEntity | ProductsEntity[],
     categories: CategoryWithParent[],
