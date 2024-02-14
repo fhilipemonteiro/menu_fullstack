@@ -47,6 +47,12 @@ export class ProductsService {
         this.productsRepository.findCategories(),
       ]);
 
+      if (!product) {
+        return res.status(404).send({
+          message: 'Product not found.',
+        });
+      }
+
       const [productWithCategories] =
         await this.organizationProductsWithCategories(product, categories);
 
