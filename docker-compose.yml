@@ -14,6 +14,19 @@ services:
       - menu_network
     command: ['yarn', 'start:dev']
 
+  menu_front:
+    build:
+      context: './frontend/menu_front'
+    image: menu_front
+    container_name: menu_front
+    ports:
+      - '3003:3003'
+    volumes:
+      - ./frontend/menu_front:/usr/src/app
+    networks:
+      - menu_network
+    command: ['yarn', 'start']
+
   db_postgre:
     image: postgres
     container_name: db_postgres
@@ -24,8 +37,6 @@ services:
       POSTGRES_DB: menu_api
     volumes:
       - ./backend/db:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
     networks:
       - menu_network
   
