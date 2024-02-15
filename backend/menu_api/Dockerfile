@@ -1,6 +1,8 @@
 FROM node:alpine
 
-RUN npm install -g @nestjs/cli
+RUN apk add --no-cache yarn
+
+RUN yarn global add @nestjs/cli
 
 WORKDIR /usr/src/app
 
