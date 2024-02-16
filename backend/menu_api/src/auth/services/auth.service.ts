@@ -18,7 +18,7 @@ export class AuthService {
       const user = await this.userService.getUserByEmail(login.email);
 
       if (!user || login.password !== user.password) {
-        res.status(404).json({
+        res.status(401).json({
           message: 'Email or password incorrect.',
         });
       }
