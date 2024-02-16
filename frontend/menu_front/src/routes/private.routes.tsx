@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Product from '../pages/products/Product';
+import Product from '../pages/product/Product';
 
 export default function PrivateRoutes() {
   return (

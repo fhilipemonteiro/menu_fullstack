@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../context/AuthContext';
 import { login } from './services/Login';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 import './login.scss';
+import { isTokenValid } from '../../utils/authUtils';
 
 export function Login() {
   const { setAccessToken, setLoggedIn } = useContext(AuthContext);
@@ -20,9 +23,15 @@ export function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await login({ email, password });
+      const {
+        data: { access_token, expires_in },
+      } = await login({ email, password });
 
-      setToken(response.data.access_token);
+      setToken(access_token);
+
+      Cookies.set('access_token', access_token, { expires: expires_in });
+
+      console.log(isTokenValid());
 
       if (token && setAccessToken) {
         setAccessToken(token);
