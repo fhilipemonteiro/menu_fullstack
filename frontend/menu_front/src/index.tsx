@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import AuthProvider from './context/AuthContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+import './index.scss';
+import App from './App';
 
-root.render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <h1>
-      <span>Hello World!</span>
-    </h1>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>,
 );
