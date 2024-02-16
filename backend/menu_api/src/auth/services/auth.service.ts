@@ -30,8 +30,15 @@ export class AuthService {
 
       const token = await this.jwtAuthService.generateToken(payload);
 
+      const expiresIn = 7200;
+      const expirationDate = new Date();
+      expirationDate.setTime(expirationDate.getTime() + expiresIn * 1000);
+
       res.status(200).json({
         access_token: token,
+        expires_in: expiresIn,
+        token_type: 'Bearer',
+        expires_at: expirationDate,
       });
     } catch {
       res.status(500).send({
