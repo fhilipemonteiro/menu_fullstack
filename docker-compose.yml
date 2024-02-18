@@ -1,31 +1,37 @@
-version: '3'
+version: "3"
 
 services:
   menu_api:
     build:
-      context: './backend/menu_api'
+      context: "./backend/menu_api"
     image: menu_api
     container_name: api_nest
+    restart: always
+    depends_on:
+      - db_postgre
     ports:
-      - '3000:3000'
+      - "3000:3000"
     volumes:
       - ./backend/menu_api:/usr/src/app
     networks:
       - menu_network
-    command: ['yarn', 'start:dev']
+    command: ["yarn", "start:dev"]
 
   menu_front:
     build:
-      context: './frontend/menu_front'
+      context: "./frontend/menu_front"
     image: menu_front
     container_name: menu_front
+    restart: always
+    depends_on:
+      - menu_api
     ports:
-      - '3003:3003'
+      - "3003:3003"
     volumes:
       - ./frontend/menu_front:/usr/src/app
     networks:
       - menu_network
-    command: ['yarn', 'start']
+    command: ["yarn", "start"]
 
   db_postgre:
     image: postgres
@@ -39,7 +45,7 @@ services:
       - ./backend/db:/var/lib/postgresql/data
     networks:
       - menu_network
-  
+
 networks:
   menu_network:
     driver: bridge
