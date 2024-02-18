@@ -1,8 +1,8 @@
 import Button from '../button/Button';
 import { MdLogout } from 'react-icons/md';
 import logout from '../../utils/logout';
-import './header.scss';
 import { useNavigate } from 'react-router-dom';
+import './style/header.scss';
 
 export default function Header(): JSX.Element {
   const navigate = useNavigate();

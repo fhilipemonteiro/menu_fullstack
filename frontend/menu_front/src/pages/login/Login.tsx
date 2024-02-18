@@ -5,12 +5,13 @@ import { login } from './services/login';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-import './login.scss';
+import './styles/login.scss';
 import { isTokenValid } from '../../utils/token-validation';
 import Button from '../../components/button/Button';
 
 export function Login() {
   const { setAccessToken, setLoggedIn } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const {
     register,
