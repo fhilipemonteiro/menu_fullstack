@@ -1,0 +1,77 @@
+$primary-color: #9e9ea7;
+$secondary-color: #ffffff;
+$third-color: #3ca9e2;
+
+.header-container {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  background-color: $primary-color;
+
+  .header-wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 1160px;
+  }
+
+  #btn-logout {
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 90%;
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid $secondary-color;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
+
+  .name-button-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    color: $secondary-color;
+  }
+
+  .icon-button-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    color: $secondary-color;
+  }
+
+  #icon-btn-logout {
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .header-wrapper {
+    max-width: 880px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header-wrapper {
+    max-width: 704px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .header-wrapper {
+    max-width: 548px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+}

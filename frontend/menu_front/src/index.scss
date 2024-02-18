@@ -1,5 +1,21 @@
+:root {
+  --gray-color: #9e9ea7;
+  --white-color: #ffffff;
+  --blue-color: #3ca9e2;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Sora', sans-serif;
+}
+
+.icon {
+  font-size: 30px;
+}
+
+Button {
+  border: none;
+  cursor: pointer;
 }
