@@ -27,22 +27,24 @@ export function Login() {
         data: { access_token, expires_in },
       } = await login({ email, password });
 
-      setToken(access_token);
+      await setToken(access_token);
 
-      Cookies.set('access_token', access_token, { expires: expires_in });
+      await Cookies.set('access_token', access_token, { expires: expires_in });
 
       console.log(isTokenValid());
 
       if (token && setAccessToken) {
-        setAccessToken(token);
+        await setAccessToken(token);
       }
 
       if (setLoggedIn) {
-        setLoggedIn(true);
+        await setLoggedIn(true);
       }
       navigate('/product');
     } catch (error) {
       const { status } = Object(error).response;
+      console.log(status);
+
       if (status === 401) {
         alert('Email ou senha inválida.');
       } else {
