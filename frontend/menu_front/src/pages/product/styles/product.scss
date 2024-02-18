@@ -1,0 +1,136 @@
+@import '../../../styles/colors.scss';
+
+.container-parent-product {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #e8e8e8;
+}
+
+.container-wrapper-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 90px;
+  margin-bottom: 20px;
+}
+
+.container-wrapper-btn-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  max-width: 1160px;
+  margin-bottom: 20px;
+
+  .btn-product {
+    display: flex;
+    width: 160px;
+    height: 100%;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    background-color: $dark-gray-color;
+    color: $white-color;
+
+    .name-buton-product {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 70%;
+      height: 100%;
+    }
+    .icon-button-product {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30%;
+      height: 100%;
+    }
+  }
+}
+
+.container-warapper-cards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1180px;
+  margin-bottom: 20px;
+}
+
+.card-product {
+  width: calc(calc(100% / 4) - 20px);
+  height: 350px;
+  margin: 10px;
+  background-color: $blue-color;
+  border-radius: 10px;
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .container-wrapper-menu {
+    max-width: 900px;
+  }
+
+  .container-wrapper-btn-menu {
+    max-width: 880px;
+  }
+
+  .card-product {
+    width: calc(calc(100% / 3) - 20px);
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container-wrapper-menu {
+    max-width: 724px;
+  }
+
+  .container-wrapper-btn-menu {
+    max-width: 704px;
+  }
+
+  .card-product {
+    width: calc(calc(100% / 3) - 20px);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .container-wrapper-menu {
+    max-width: 568px;
+  }
+
+  .container-wrapper-btn-menu {
+    max-width: 548px;
+  }
+
+  .card-product {
+    width: calc(calc(100% / 2) - 20px);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .container-wrapper-menu {
+    width: 100%;
+  }
+
+  .container-wrapper-btn-menu {
+    width: 90%;
+  }
+
+  .container-warapper-cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-product {
+    width: 90%;
+    height: calc(100vh - 200px);
+  }
+}

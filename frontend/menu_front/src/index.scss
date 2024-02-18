@@ -1,8 +1,4 @@
-:root {
-  --gray-color: #9e9ea7;
-  --white-color: #ffffff;
-  --blue-color: #3ca9e2;
-}
+@import './styles/colors.scss';
 
 * {
   margin: 0;
