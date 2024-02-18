@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate } from 'react-router-dom';
 import PrivateRoutes from './routes/private.routes';
 import PublicRoutes from './routes/public.routes';
-import { isTokenValid } from './utils/authUtils';
+import { isTokenValid } from './utils/token-validation';
 
 export default function App() {
   return (

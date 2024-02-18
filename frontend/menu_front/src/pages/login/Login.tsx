@@ -1,12 +1,12 @@
 import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../context/AuthContext';
-import { login } from './services/Login';
+import { login } from './services/login';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 import './login.scss';
-import { isTokenValid } from '../../utils/authUtils';
+import { isTokenValid } from '../../utils/token-validation';
 import Button from '../../components/button/Button';
 
 export function Login() {
