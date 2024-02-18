@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 
 import './login.scss';
 import { isTokenValid } from '../../utils/authUtils';
+import Button from '../../components/button/Button';
 
 export function Login() {
   const { setAccessToken, setLoggedIn } = useContext(AuthContext);
@@ -81,9 +82,9 @@ export function Login() {
               onChange={e => setPassword(e.target.value)}
             />
             {errors.password && <p>{String(errors.password.message)}</p>}
-            <button id='btn-login' type='submit'>
-              LOGIN
-            </button>
+            <Button id='btn-login' type='submit'>
+              Login
+            </Button>
           </form>
         </div>
       </div>
