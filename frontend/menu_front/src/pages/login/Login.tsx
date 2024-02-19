@@ -32,7 +32,7 @@ export function Login() {
       await setAccessToken?.(access_token);
 
       await setLoggedIn?.(true);
-      navigate('/product');
+      navigate('/products');
     } catch (error) {
       const { status } = Object(error).response;
       if (status === 401) {
