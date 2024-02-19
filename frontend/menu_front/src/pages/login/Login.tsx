@@ -29,18 +29,12 @@ export function Login() {
 
       await Cookies.set('access_token', access_token, { expires: expires_in });
 
-      if (setAccessToken) {
-        await setAccessToken(access_token);
-      }
+      await setAccessToken?.(access_token);
 
-      if (setLoggedIn) {
-        await setLoggedIn(true);
-      }
+      await setLoggedIn?.(true);
       navigate('/product');
     } catch (error) {
       const { status } = Object(error).response;
-      console.log(status);
-
       if (status === 401) {
         alert('Email ou senha inválida.');
       } else {
