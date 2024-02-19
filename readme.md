@@ -31,6 +31,19 @@ docker-compose up
 
 Este comando irá construir e iniciar os contêineres Docker para o backend, frontend e banco de dados.
 
+4. Após a construção e inicialização dos contêineres, acesse a aplicação no navegador da web:
+
+```javascript
+http://localhost:3003
+```
+
+A API estará acessível na porta 3000, e o PostgreSQL estará rodando na porta padrão somente dentro do container.
+
+### Endpoints
+
+- /auth/login - Rota para login.
+- /products - Rota para visualização e gerenciamento de produtos.
+
 ### Estrutura do Projeto:
 
 - /backend: Contém o código-fonte do backend desenvolvido em Nest.js.
