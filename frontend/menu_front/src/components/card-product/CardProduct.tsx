@@ -5,6 +5,7 @@ interface ICardProduct {
   price: number;
   photo: string;
   categories: ICategory[];
+  onProductDelete: () => void;
 }
 
 interface ICategory {
@@ -13,16 +14,34 @@ interface ICategory {
   parent_id: string | null;
 }
 
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
+import { deleteProduct } from './services/delete-product';
+
 import Button from '../button/Button';
 import './style/card-product.scss';
 
 export default function CardProduct({
+  id,
   name,
   qty,
   price,
   photo,
   categories,
+  onProductDelete,
 }: ICardProduct): JSX.Element {
+  const { accessToken } = useContext(AuthContext);
+
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await deleteProduct(id, accessToken);
+      onProductDelete();
+      return response;
+    } catch {
+      alert('Ocorreu um erro inesperado, tente novamente mais tarde.');
+    }
+  };
+
   return (
     <div className='card-product'>
       <div className='card-product-img'>
@@ -45,7 +64,9 @@ export default function CardProduct({
         </div>
         <div className='card-product-btns'>
           <Button id='btn-card-edit'>Editar</Button>
-          <Button id='btn-card-delete'>Excluir</Button>
+          <Button id='btn-card-delete' onClick={() => handleDelete(id)}>
+            Excluir
+          </Button>
         </div>
       </div>
 

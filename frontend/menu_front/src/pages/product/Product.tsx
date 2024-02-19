@@ -12,7 +12,7 @@ import CardProduct from '../../components/card-product/CardProduct';
 import { IProduct } from './interfaces/product';
 export default function Product(): JSX.Element {
   const [products, setProducts] = useState<IProduct[]>([]);
-
+  const [forceRender, setForceRender] = useState(false);
   const { accessToken } = useContext(AuthContext);
 
   useEffect(() => {
@@ -32,7 +32,11 @@ export default function Product(): JSX.Element {
       }
     };
     fetchData();
-  }, [accessToken]);
+  }, [accessToken, forceRender]);
+
+  const handleForceRender = () => {
+    setForceRender(prevState => !prevState);
+  };
 
   return (
     <>
@@ -56,13 +60,14 @@ export default function Product(): JSX.Element {
           <div className='container-warapper-cards'>
             {products.map(product => (
               <CardProduct
-                key={product.id}
+                key={`${product.id}_${forceRender}`}
                 id={product.id}
                 name={product.name}
                 qty={product.qty}
                 price={product.price}
                 photo={product.photo}
                 categories={product.categories}
+                onProductDelete={handleForceRender}
               />
             ))}
           </div>
