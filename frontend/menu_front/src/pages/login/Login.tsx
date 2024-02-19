@@ -5,9 +5,8 @@ import { login } from './services/login';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-import './styles/login.scss';
-import { isTokenValid } from '../../utils/token-validation';
 import Button from '../../components/button/Button';
+import './styles/login.scss';
 
 export function Login() {
   const { setAccessToken, setLoggedIn } = useContext(AuthContext);
@@ -21,7 +20,6 @@ export function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
 
   const handleLogin = async () => {
     try {
@@ -29,14 +27,10 @@ export function Login() {
         data: { access_token, expires_in },
       } = await login({ email, password });
 
-      await setToken(access_token);
-
       await Cookies.set('access_token', access_token, { expires: expires_in });
 
-      console.log(isTokenValid());
-
-      if (token && setAccessToken) {
-        await setAccessToken(token);
+      if (setAccessToken) {
+        await setAccessToken(access_token);
       }
 
       if (setLoggedIn) {
