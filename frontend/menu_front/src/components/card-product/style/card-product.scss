@@ -123,25 +123,25 @@
 
 @media (min-width: 1025px) and (max-width: 1200px) {
   .card-product {
-    width: calc(calc(100% / 3) - 20px);
+    width: calc(calc(100% / 3) - 20px) !important;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .card-product {
-    width: calc(calc(100% / 3) - 20px);
+    width: calc(calc(100% / 3) - 20px) !important;
   }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
   .card-product {
-    width: calc(calc(100% / 2) - 20px);
+    width: calc(calc(100% / 2) - 20px) !important;
   }
 }
 
 @media (max-width: 480px) {
   .card-product {
-    width: 90%;
-    height: calc(100vh - 200px);
+    width: 90% !important;
+    height: calc(100vh - 200px) !important;
   }
 }

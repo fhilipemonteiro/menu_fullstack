@@ -66,14 +66,6 @@
   margin-bottom: 20px;
 }
 
-.card-product {
-  width: calc(calc(100% / 4) - 20px);
-  height: 350px;
-  margin: 10px;
-  background-color: $light-gray-color;
-  border-radius: 10px;
-}
-
 @media (min-width: 1025px) and (max-width: 1200px) {
   .container-wrapper-menu {
     max-width: 900px;
