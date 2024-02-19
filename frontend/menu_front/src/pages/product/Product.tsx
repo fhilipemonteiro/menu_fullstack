@@ -1,15 +1,17 @@
-// import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { MdAddCircleOutline, MdFilterAlt } from 'react-icons/md';
+
+import { AuthContext } from '../../context/AuthContext';
+
 import Button from '../../components/button/Button';
 import Header from '../../components/header/Header';
-// import CardProduct from '../../components/card-product/CardProduct';
-import { getProducts } from './services/get-product';
-
-import { MdAddCircleOutline, MdFilterAlt } from 'react-icons/md';
-import './styles/product.scss';
-import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/AuthContext';
 import CardProduct from '../../components/card-product/CardProduct';
+
+import { getProducts } from './services/get-product';
 import { IProduct } from './interfaces/product';
+
+import './styles/product.scss';
+
 export default function Product(): JSX.Element {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [forceRender, setForceRender] = useState(false);
