@@ -41,10 +41,7 @@ export default function Product(): JSX.Element {
   }, [accessToken, forceRender]);
 
   const handleForceRender = () => {
-    console.log(forceRender);
-
     setForceRender(prevState => !prevState);
-    console.log(forceRender);
   };
 
   const openModalNewProduct = () => {
