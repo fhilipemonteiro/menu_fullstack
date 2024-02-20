@@ -1,11 +1,8 @@
-import { useContext, useEffect } from 'react';
-import { AuthContext } from '../context/AuthContext';
-// import { jwtDecode } from 'jwt-decode';
+import { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { IAuthContext } from '../context/AuthContext';
 
-export default async function useAuthInitialization() {
-  const { setAccessToken, setLoggedIn } = useContext(AuthContext);
-
+export default async function useAuthInitialization({ setAccessToken, setLoggedIn }: IAuthContext) {
   useEffect(() => {
     const token = Cookies.get('access_token');
     if (token) {

@@ -1,11 +1,16 @@
 import { BrowserRouter, Navigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext';
+
 import PrivateRoutes from './routes/private.routes';
 import PublicRoutes from './routes/public.routes';
+
 import { isTokenValid } from './utils/token-validation';
 import useAuthInitialization from './utils/use-auth-initialization';
 
 export default function App() {
-  useAuthInitialization();
+  const context = useContext(AuthContext);
+  useAuthInitialization(context);
   return (
     <>
       <BrowserRouter>
