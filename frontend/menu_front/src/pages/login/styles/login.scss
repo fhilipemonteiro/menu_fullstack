@@ -48,6 +48,10 @@ p {
   width: 100%;
 }
 
+input::placeholder {
+  color: $dark-gray-color;
+}
+
 input[type='email'],
 input[type='password'] {
   width: 100%;
