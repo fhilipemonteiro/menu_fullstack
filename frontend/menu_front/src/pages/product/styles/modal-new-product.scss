@@ -1,0 +1,40 @@
+@import '../../../styles/colors.scss';
+
+.hide-when-modal-open {
+  display: none;
+}
+
+.container-wrapper-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 1200px;
+  margin-top: 90px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .container-wrapper-modal {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container-wrapper-modal {
+    max-width: 724px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .container-wrapper-modal {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-wrapper-modal {
+    width: 90%;
+  }
+}
