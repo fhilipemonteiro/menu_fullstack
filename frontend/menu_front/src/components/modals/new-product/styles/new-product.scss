@@ -17,6 +17,10 @@ input::placeholder {
   color: black;
 }
 
+.mandatory {
+  color: $red-color;
+}
+
 .container-modal-new-product {
   display: flex;
   flex-direction: column;
@@ -136,6 +140,10 @@ input::placeholder {
           border-radius: 10px;
           background-color: $light-gray-color;
         }
+
+        select:focus {
+          outline: none;
+        }
       }
     }
   }
@@ -186,4 +194,17 @@ input::placeholder {
   #btn-product-modal-cancel {
     background-color: $red-color;
   }
+}
+
+.validation-numbers {
+  color: $black-color;
+}
+
+#border-required {
+  border: 1px solid $red-color;
+}
+
+#url-invalid {
+  font-size: 10px;
+  color: $black-color;
 }
