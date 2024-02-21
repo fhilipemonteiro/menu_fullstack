@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import { IProduct } from '../../../pages/product/interfaces/product';
 import { updateProduct } from './services/edit-product';
@@ -17,6 +18,8 @@ interface IEditProduct {
 
 export default function EditProduct({ product, closeModal, forceRender }: IEditProduct) {
   const { accessToken } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -61,7 +64,14 @@ export default function EditProduct({ product, closeModal, forceRender }: IEditP
       reset();
       return response;
     } catch (error) {
-      console.log(error);
+      const { status } = Object(error).response;
+
+      if (status === 401) {
+        alert('Não autorizado.');
+        navigate('/auth/login');
+      } else {
+        alert('Ocorreu um erro inesperado, tente novamente mais tarde.');
+      }
     }
   };
 
