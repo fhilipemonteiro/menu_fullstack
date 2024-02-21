@@ -13,13 +13,17 @@ import { IProduct } from './interfaces/product';
 import NewProduct from '../../components/modals/new-product/NewProduct';
 import './styles/product.scss';
 import './styles/modal-new-product.scss';
+import EditProduct from '../../components/modals/edit-product/EditProduct';
+// import EditProduct from '../../components/modals/edit-product/EditProduct';
 
 export default function Product(): JSX.Element {
   const { accessToken } = useContext(AuthContext);
-
   const [products, setProducts] = useState<IProduct[]>([]);
   const [forceRender, setForceRender] = useState<boolean>(false);
-  const [isModalNewProductOpen, setIsNewProductModal] = useState<boolean>(false);
+  const [isNewProductModal, setIsNewProductModal] = useState<boolean>(false);
+  const [isEditProductModal, setIsEditProductModal] = useState<boolean>(false);
+
+  const [productEdit, setProductEdit] = useState<IProduct>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,16 +55,31 @@ export default function Product(): JSX.Element {
   const closeModalNewProduct = () => {
     setIsNewProductModal(false);
   };
-  ('container-wrapper-menu');
+
+  const openModalEditProduct = (product: IProduct) => {
+    setIsEditProductModal(true);
+    setProductEdit(product);
+  };
+
+  const closeModalEditProduct = () => {
+    setIsEditProductModal(false);
+  };
+
   return (
     <>
       <div className='container-parent-product'>
         <Header />
         <div
-          className={isModalNewProductOpen ? 'container-wrapper-modal' : 'container-wrapper-menu'}>
+          className={
+            isNewProductModal || isEditProductModal
+              ? 'container-wrapper-modal'
+              : 'container-wrapper-menu'
+          }>
           <div
             className={
-              isModalNewProductOpen ? 'hide-when-modal-open' : 'container-wrapper-btn-menu'
+              isNewProductModal || isEditProductModal
+                ? 'hide-when-modal-open'
+                : 'container-wrapper-btn-menu'
             }>
             <Button className='btn-product' onClick={openModalNewProduct}>
               <div className='name-buton-product'>Novo Produto</div>
@@ -75,11 +94,22 @@ export default function Product(): JSX.Element {
               </div>
             </Button>
           </div>
-          {isModalNewProductOpen && (
+          {isNewProductModal && (
             <NewProduct closeModal={closeModalNewProduct} forceRender={handleForceRender} />
           )}
+          {isEditProductModal && productEdit && (
+            <EditProduct
+              product={productEdit}
+              closeModal={closeModalEditProduct}
+              forceRender={handleForceRender}
+            />
+          )}
           <div
-            className={isModalNewProductOpen ? 'hide-when-modal-open' : 'container-warapper-cards'}>
+            className={
+              isNewProductModal || isEditProductModal
+                ? 'hide-when-modal-open'
+                : 'container-warapper-cards'
+            }>
             {products.map(product => (
               <CardProduct
                 key={product.id}
@@ -90,6 +120,7 @@ export default function Product(): JSX.Element {
                 photo={product.photo}
                 categories={product.categories}
                 onProductDelete={handleForceRender}
+                onProductUpdate={openModalEditProduct}
               />
             ))}
           </div>

@@ -6,6 +6,7 @@ interface ICardProduct {
   photo: string;
   categories: ICategory[];
   onProductDelete: () => void;
+  onProductUpdate: (product: IProduct) => void;
 }
 
 interface ICategory {
@@ -18,6 +19,8 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { deleteProduct } from './services/delete-product';
 
+import { IProduct } from '../../pages/product/interfaces/product';
+
 import Button from '../button/Button';
 import './style/card-product.scss';
 
@@ -29,6 +32,7 @@ export default function CardProduct({
   photo,
   categories,
   onProductDelete,
+  onProductUpdate,
 }: ICardProduct): JSX.Element {
   const { accessToken } = useContext(AuthContext);
 
@@ -63,7 +67,20 @@ export default function CardProduct({
           </div>
         </div>
         <div className='card-product-btns'>
-          <Button id='btn-card-edit'>Editar</Button>
+          <Button
+            id='btn-card-edit'
+            onClick={() =>
+              onProductUpdate({
+                id,
+                name,
+                qty,
+                price,
+                photo,
+                categories,
+              })
+            }>
+            Editar
+          </Button>
           <Button id='btn-card-delete' onClick={() => handleDelete(id)}>
             Excluir
           </Button>
