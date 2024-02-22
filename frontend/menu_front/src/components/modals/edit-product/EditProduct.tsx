@@ -80,10 +80,7 @@ export default function EditProduct({ product, closeModal, forceRender }: IEditP
       <div className='product-header-container'>
         <div className='product-header-wrapper'>
           <div className='product-header-photo'>
-            <img
-              src={`https://drogariasp.vteximg.com.br/arquivos/ids/677450-1000-1000/3204---energetico-red-bull-energy-drink-250ml.jpg?v=637908227857370000`}
-              alt={name}
-            />
+            <img src={photo} alt={name} />
           </div>
           <div className='product-header-details'>
             <div className='prouduct-header-numbers'>
