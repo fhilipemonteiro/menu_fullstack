@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../context/AuthContext';
 import { login } from './services/login';
@@ -20,6 +20,10 @@ export function Login() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    document.title = 'Login | Admin';
+  }, []);
 
   const handleLogin = async () => {
     try {

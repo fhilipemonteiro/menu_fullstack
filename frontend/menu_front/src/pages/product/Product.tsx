@@ -44,6 +44,10 @@ export default function Product(): JSX.Element {
     fetchData();
   }, [accessToken, forceRender]);
 
+  useEffect(() => {
+    document.title = 'Produtos | Admin';
+  }, []);
+
   const handleForceRender = () => {
     setForceRender(prevState => !prevState);
   };
